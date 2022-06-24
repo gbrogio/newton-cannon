@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+    }
+
+    #universe {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      background-color: #101010;
+
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #projetil {
+      top: 0;
+      left: 0;
+      background-color: rgb(48, 212, 62);
+      border: 2px solid rgb(25, 114, 32);
+      box-shadow: 0 0 2rem rgba(48, 212, 62, 0.70) ;
+
+      position: absolute;
+    }
+    #planet {
+      background-color: rgb(48, 113, 212);
+      border: 2px solid rgb(25, 49, 114);
+      box-shadow: 0 0 2rem rgba(48, 113, 212, 0.50) ;
+    }
+
+    .screen {
+      top: 2rem;
+      left: 2rem;
+      z-index: 1;
+
+      position: absolute;
+    }
+    .screen #impulse {
+      padding: 0.5rem;
+    }
+    .screen #start {
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+    <input type="number" id="impulse" placeholder="Impulso">
+    <button type="button" id="start">Disparar</button>
+  </div>
+  <div id="universe">
+    <div id="projetil"></div>
+    <div id="planet"></div>
+  </div>
+
+  <script src="/dist/main.js"></script>
+</body>
+</html>

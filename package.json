@@ -1,0 +1,13 @@
+{
+  "name": "cnewtton",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
