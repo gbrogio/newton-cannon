@@ -30,6 +30,7 @@
       justify-content: center;
     }
     #projetil {
+      z-index: 1;
       top: 0;
       left: 0;
       background-color: rgb(48, 212, 62);
@@ -42,6 +43,8 @@
       background-color: rgb(48, 113, 212);
       border: 2px solid rgb(25, 49, 114);
       box-shadow: 0 0 2rem rgba(48, 113, 212, 0.50) ;
+      transform: translate(-50%, -50%);
+      position: absolute;
     }
 
     .screen {
@@ -68,7 +71,6 @@
     <div id="projetil"></div>
     <div id="planet"></div>
   </div>
-
   <script src="/dist/main.js"></script>
 </body>
 </html>

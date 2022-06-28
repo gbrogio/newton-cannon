@@ -7,24 +7,24 @@ const start = document.getElementById('start')!;
 
 /////////////// GLOBALS //////////////////
 const G = 6.67384;
-let IMPULSE = Number(impulse.value);
+let IMPULSE: number | undefined = undefined;
 
 /////////////// ENTITIES //////////////////
 const universeValues = {
-  x0: window.innerWidth / 2,
-  y0: window.innerHeight / 2,
+  x0: window.innerWidth/2,
+  y0: window.innerHeight/2,
 }
 const planetValues = {
   x: universeValues.x0,
   y: universeValues.y0,
   r: 100,
-  w: 10000,
+  w: 6 * 10^24,
 }
 const projetilValues = {
-  x: (universeValues.x0 - 10),
-  y: (universeValues.y0 - 10) - 120,
-  r: 10,
-  w: 1,
+  x: (universeValues.x0 - 25),
+  y: (universeValues.y0 - 25) - 150,
+  r: 25,
+  w: 7 * 10^19,
   speedX: 0,
   speedY: 0,
   velocityX: 0,
@@ -44,21 +44,25 @@ function getDistancie(
 }
 
 /////////////// EVENTS //////////////////
-window.addEventListener('resize', () => {
-  universeValues.x0 = window.innerWidth / 2;
-  universeValues.y0 = window.innerHeight / 2;
+// window.addEventListener('resize', () => {
+//   universeValues.x0 = window.innerWidth / 2;
+//   universeValues.y0 = window.innerHeight / 2;
 
-  planetValues.x = universeValues.x0;
-  planetValues.y = universeValues.y0;
+//   planetValues.x = universeValues.x0;
+//   planetValues.y = universeValues.y0;
 
-  projetilValues.x = (universeValues.x0 - 10);
-  projetilValues.y = (universeValues.y0 - 10) - 120;
-});
+//   projetilValues.x = (universeValues.x0 - 10);
+//   projetilValues.y = (universeValues.y0 - 10) - 120;
+//   IMPULSE = undefined;
+// });
 start.addEventListener('click', () => {
-  IMPULSE = Number(impulse.value);
+  IMPULSE = undefined;
+  projetilValues.x = (universeValues.x0 - 25);
+  projetilValues.y = (universeValues.y0 - 25) - 150;
 
-  projetilValues.x = (universeValues.x0 - 10);
-  projetilValues.y = (universeValues.y0 - 10) - 120;
+  setTimeout(() => {
+    IMPULSE = Number(impulse.value);
+  }, 500)
 })
 
 /////////////// SCREEN //////////////////
@@ -70,12 +74,14 @@ if (projetil && planet) {
   planet.width = `${planetValues.r + planetValues.r}px`;
   planet.height = `${planetValues.r + planetValues.r}px`;
   planet.borderRadius = `${planetValues.r}px`;
+  planet.top = `${planetValues.y}px`;
+  planet.left = `${planetValues.x}px`;
 }
 
 /////////////// LOOP //////////////////
 function loop() {
-  if (projetil) {
-  const projetilX = projetilValues.x;
+  if (projetil && IMPULSE) {
+    const projetilX = projetilValues.x;
     const projetilY = projetilValues.y;
     let distancie = getDistancie(
       projetilX, projetilY, 
@@ -105,7 +111,7 @@ function loop() {
 
     if (
       getDistancie(
-      projetilX, projetilY, 
+      projetilX + 25, projetilY + 25, 
       planetValues.x, planetValues.y,
       ) < projetilValues.r + planetValues.r
     ) {
@@ -125,4 +131,4 @@ function loop() {
 
 setInterval(() => {
   loop();
-}, 30)
+}, 5)
